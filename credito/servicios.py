@@ -25,8 +25,9 @@ class Tarjeta_de_servicios(Tarjeta_de_credito):
                 deuda = int(input())
                 self.set_deuda(deuda)
 
-                print("Inserta el monto total de las compras realizadas después del corte:")
-                self.set_cargos(int(input()))
+                print("Inserta el monto total del pago realizadas después del corte:")
+                pagos = int(input())
+                self.set_pagos(pagos)
 
                 if pagos != deuda:
                     print("ERROR: CON LA TARJETA DE SERVICIOS DEBES PAGAR EL SALDO TOTAL")
@@ -34,9 +35,9 @@ class Tarjeta_de_servicios(Tarjeta_de_credito):
                 else:
                     capturado = True
 
-            except:
-                print("Error: Dato no permitido, vuelve a intentar")
-                self.crea_tarjeta()
+        except:
+            print("Error: Dato no permitido, vuelve a intentar")
+            self.crea_tarjeta()
 
     @decorador_servicios
     def pagos_distintos(self, *args):
