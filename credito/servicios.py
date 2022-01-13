@@ -39,6 +39,20 @@ class Tarjeta_de_servicios(Tarjeta_de_credito):
             print("Error: Dato no permitido, vuelve a intentar")
             self.crea_tarjeta()
 
+  
+    @decorador_servicios
+    def pagos_recurrentes(self, monto):
+        """
+        Calcula un pago recurrente sobre la tarjeta con un monto preestablecido, hasta que la tarjeta quede en ceros.
+        """
+        self.__pagos = self.get_deuda()
+        self.__cargos = 0
+        while self.get_deuda() > 0:
+            if self.get_deuda() < self.get_pagos():
+                self.__pagos = self.get_deuda()
+            self.imprime_reporte()
+            self.set_deuda(self.get_nueva_deuda())
+
     @decorador_servicios
     def pagos_distintos(self, *args):
         """
